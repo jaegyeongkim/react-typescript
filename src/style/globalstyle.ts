@@ -17,6 +17,13 @@ const globalStyles = createGlobalStyle`
         display: flex;
         width: 100%;
     }
+    button{
+        border: 0;
+        padding: 0;
+        outline: none;
+        background-color: transparent;
+        cursor: pointer;
+    }
 `;
 
 export default globalStyles;
