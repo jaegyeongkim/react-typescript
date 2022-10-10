@@ -7,6 +7,7 @@
 - [x] react-router-dom
 - [x] recoil
 - [x] styled-components
+- [x] styled-reset
 - [x] react-query
 - [x] react-hook-form
 

@@ -3,6 +3,8 @@ import { RecoilRoot } from "recoil";
 import { QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
+import GlobalStyles from "style/globalstyle";
+
 import Router from "./router";
 import { queryClient } from "service/queryClient";
 
@@ -11,6 +13,7 @@ const App = () => {
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools />
+        <GlobalStyles />
         <Router />
       </QueryClientProvider>
     </RecoilRoot>
