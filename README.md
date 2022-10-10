@@ -4,10 +4,11 @@
 
 ### dependencies
 
-- [x] axios
-- [x] env-cmd
 - [x] react-router-dom
 - [x] recoil
+- [x] styled-components
+- [x] react-query
+- [x] react-hook-form
 
 ### dev-dependencies
 
