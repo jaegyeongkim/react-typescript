@@ -1,38 +1,37 @@
 import React from "react";
-import { useRecoilState } from "recoil";
+import styled from "styled-components";
 
-import { isModalOpenState } from "store/common";
-import { clientLanguageState, ClientLanguageType } from "store/persist";
+import ArticleTable from "./container/ArticleTable";
 
 const Home = () => {
-  const [isOpen, setIsOpen] = useRecoilState(isModalOpenState);
-  const [language, setLanguage] = useRecoilState(clientLanguageState); // en
-
-  const handleClickModal = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleChangeLang = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value as ClientLanguageType;
-    setLanguage(value);
-  };
-
   return (
-    <div>
-      <div>Home</div>
-      <button type="button" onClick={handleClickModal}>
-        Modal
-      </button>
-      <div>{isOpen ? "Modal open" : "Modal close"}</div>
-      <div>
-        <select name="language" value={language} onChange={handleChangeLang}>
-          <option value="en">En</option>
-          <option value="ko">Ko</option>
-        </select>
-      </div>
-      <div>{language}</div>
-    </div>
+    <>
+      <h1>Article</h1>
+      <BtnWrapper>
+        <AddBtn type="button">게시글 추가</AddBtn>
+      </BtnWrapper>
+      <Wrapper>
+        <ArticleTable />
+      </Wrapper>
+    </>
   );
 };
 
 export default Home;
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const BtnWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const AddBtn = styled.button`
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid ${({ theme }) => theme.color.gray_02};
+  border-radius: 5px;
+`;
