@@ -16,6 +16,7 @@ const globalStyles = createGlobalStyle`
     #root{
         display: flex;
         width: 100%;
+        color: black;
     }
     button{
         border: 0;
@@ -23,6 +24,10 @@ const globalStyles = createGlobalStyle`
         outline: none;
         background-color: transparent;
         cursor: pointer;
+    }
+    a{
+        text-decoration: none;
+        color: black;
     }
 `;
 
