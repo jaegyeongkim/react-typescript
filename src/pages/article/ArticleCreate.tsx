@@ -1,20 +1,51 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import styled, { css } from "styled-components";
 
 import { CommonH1 } from "style/commonStyled";
 
+interface FormValues {
+  title: string;
+  content: string;
+}
+
 const ArticleCreate = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
+
   return (
     <>
       <CommonH1>Article Create</CommonH1>
-      <FormWrapper>
+      <FormWrapper
+        onSubmit={handleSubmit((data) => alert(JSON.stringify(data)))}
+      >
         <TitleWrapper>
-          <Label>제목</Label>
-          <input />
+          <Label data-error={true}>제목</Label>
+          <TitleInput
+            id="title"
+            type="text"
+            placeholder="제목을 입력하세요."
+            aria-invalid={errors.title ? "true" : "false"}
+            data-error={errors.title ? true : false}
+            {...register("title", { required: "제목은 필수 값입니다." })}
+          />
+          {errors.title && <Alert role="alert">{errors.title.message}</Alert>}
         </TitleWrapper>
         <ContentWrapper>
           <Label>내용</Label>
-          <textarea />
+          <ContentTextarea
+            id="content"
+            placeholder="내용을 입력하세요."
+            aria-invalid={errors.content ? "true" : "false"}
+            data-error={errors.content ? true : false}
+            {...register("content", { required: "내용은 필수 값입니다." })}
+          />
+          {errors.content && (
+            <Alert role="alert">{errors.content.message}</Alert>
+          )}
         </ContentWrapper>
         <BtnWrapper>
           <CancelBtn type="button">취소</CancelBtn>
@@ -39,18 +70,10 @@ const FormWrapper = styled.form`
 
 const TitleWrapper = styled.div`
   ${mixinWrapper};
-  & > input {
-    height: 2rem;
-    padding: 0 10px;
-  }
 `;
 
 const ContentWrapper = styled.div`
   ${mixinWrapper};
-  & > textarea {
-    height: 10rem;
-    padding: 10px;
-  }
 `;
 
 const Label = styled.label`
@@ -59,7 +82,7 @@ const Label = styled.label`
   margin-bottom: 1rem;
   :after {
     content: "*";
-    color: red;
+    color: ${({ theme }) => theme.color.error_01};
   }
 `;
 
@@ -81,4 +104,28 @@ const CancelBtn = styled.button`
 
 const SubmitBtn = styled.button`
   ${mixinBtn};
+`;
+
+const Alert = styled.span`
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: ${({ theme }) => theme.color.error_01};
+`;
+
+const TitleInput = styled.input`
+  height: 2rem;
+  padding: 0 10px;
+
+  &[data-error="true"] {
+    border: 1px solid ${({ theme }) => theme.color.error_01};
+  }
+`;
+
+const ContentTextarea = styled.textarea`
+  height: 10rem;
+  padding: 10px;
+
+  &[data-error="true"] {
+    border: 1px solid ${({ theme }) => theme.color.error_01};
+  }
 `;
