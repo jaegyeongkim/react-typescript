@@ -1,9 +1,6 @@
 import styled, { css } from "styled-components";
 
-const mixinWrapper = css`
-  display: flex;
-  flex-direction: column;
-`;
+import { mixinBtn } from "style/mixin/button";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -11,12 +8,20 @@ export const Wrapper = styled.div`
   row-gap: 1rem;
 `;
 
-export const TitleWrapper = styled.div`
-  ${mixinWrapper};
+export const BtnWrapper = styled.div`
+  display: flex;
+  justify-content: end;
+  column-gap: 0.5rem;
+
+  & > button,
+  a {
+    ${mixinBtn};
+  }
 `;
 
-export const ContentWrapper = styled.div`
-  ${mixinWrapper};
+export const TitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Label = styled.h2`
