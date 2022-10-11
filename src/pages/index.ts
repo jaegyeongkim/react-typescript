@@ -1,5 +1,5 @@
 import NotFound from "./notFound/NotFound";
-import Article from "./article/Article";
-import ArticleCreate from "./article/ArticleCreate";
+import Article from "./article/main/Article.component";
+import ArticleCreate from "./article/create/ArticleCreate.component";
 
 export { NotFound, Article, ArticleCreate };
