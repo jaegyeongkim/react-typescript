@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import ArticleTable from "./container/ArticleTable";
 
-const Home = () => {
+const Article = () => {
   return (
     <>
       <h1>Article</h1>
@@ -17,7 +17,7 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Article;
 
 const Wrapper = styled.div`
   display: flex;

@@ -1,4 +1,4 @@
 import NotFound from "./notFound/NotFound";
-import Home from "./home/Home";
+import Article from "./article/Article";
 
-export { NotFound, Home };
+export { NotFound, Article };
