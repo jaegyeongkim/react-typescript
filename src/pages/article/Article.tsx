@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import { PATH } from "utils/constants";
 import ArticleTable from "./container/ArticleTable";
 
 const Article = () => {
@@ -8,7 +10,7 @@ const Article = () => {
     <>
       <h1>Article</h1>
       <BtnWrapper>
-        <AddBtn type="button">게시글 추가</AddBtn>
+        <GoToCreate to={PATH.articleCreate}>게시글 추가</GoToCreate>
       </BtnWrapper>
       <Wrapper>
         <ArticleTable />
@@ -29,7 +31,7 @@ const BtnWrapper = styled.div`
   justify-content: flex-end;
 `;
 
-const AddBtn = styled.button`
+const GoToCreate = styled(Link)`
   margin-bottom: 10px;
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.color.gray_02};
