@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import { mixinBtn } from "style/mixin/button";
+
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -12,8 +14,6 @@ export const BtnWrapper = styled.div`
 `;
 
 export const GoToCreate = styled(Link)`
+  ${mixinBtn}
   margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid ${({ theme }) => theme.color.gray_02};
-  border-radius: 5px;
 `;

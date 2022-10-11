@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { Table } from "components";
@@ -34,6 +35,7 @@ const ArticleTable = () => {
       <Table.Tbody>
         {dummyData.map((rowData) => (
           <Table.Trow key={rowData.id}>
+            <GoToUpdate to={`/article/detail?id=${rowData.id}`} />
             {articleHeadColumnList.map(({ key }) => (
               <Table.Cell key={key}>
                 {rowData[key as keyof TableCellType]}
@@ -50,4 +52,13 @@ export default ArticleTable;
 
 const CustomTable = styled(Table)`
   grid-template-columns: 1fr 3fr;
+`;
+
+const GoToUpdate = styled(Link)`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  :hover {
+    background-color: ${({ theme }) => theme.color.point_01_opacity_10};
+  }
 `;

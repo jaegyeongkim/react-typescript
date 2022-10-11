@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
+import { CancelBtn } from "components";
 import { CommonH1 } from "style/commonStyled";
 import * as S from "./ArticleCreate.styled";
 
@@ -23,7 +24,7 @@ const ArticleCreate = () => {
         onSubmit={handleSubmit((data) => alert(JSON.stringify(data)))}
       >
         <S.TitleWrapper>
-          <S.Label data-error={true}>제목</S.Label>
+          <S.Label htmlFor="title">제목</S.Label>
           <S.TitleInput
             id="title"
             type="text"
@@ -37,7 +38,7 @@ const ArticleCreate = () => {
           )}
         </S.TitleWrapper>
         <S.ContentWrapper>
-          <S.Label>내용</S.Label>
+          <S.Label htmlFor="content">내용</S.Label>
           <S.ContentTextarea
             id="content"
             placeholder="내용을 입력하세요."
@@ -50,7 +51,7 @@ const ArticleCreate = () => {
           )}
         </S.ContentWrapper>
         <S.BtnWrapper>
-          <S.CancelBtn type="button">취소</S.CancelBtn>
+          <CancelBtn>취소</CancelBtn>
           <S.SubmitBtn type="submit">등록</S.SubmitBtn>
         </S.BtnWrapper>
       </S.FormWrapper>

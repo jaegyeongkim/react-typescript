@@ -1,7 +1,13 @@
 import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
-import { NotFound, Article, ArticleCreate, ArticleUpdate } from "pages";
+import {
+  NotFound,
+  Article,
+  ArticleDetail,
+  ArticleCreate,
+  ArticleUpdate,
+} from "pages";
 import { Layout } from "components";
 import { PATH } from "utils/constants";
 
@@ -13,6 +19,7 @@ const Router = () => {
           <Route index element={<Article />} />
           <Route path={PATH.article}>
             <Route path="" element={<Article />} />
+            <Route path={PATH.articleDetail} element={<ArticleDetail />} />
             <Route path={PATH.articleCreate} element={<ArticleCreate />} />
             <Route path={PATH.articleUpdate} element={<ArticleUpdate />} />
           </Route>
