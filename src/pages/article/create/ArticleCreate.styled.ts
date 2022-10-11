@@ -1,5 +1,6 @@
-import { mixinBtn } from "style/mixin/button";
 import styled, { css } from "styled-components";
+
+import { mixinBtn } from "style/mixin/button";
 
 const mixinWrapper = css`
   display: flex;
@@ -33,10 +34,6 @@ export const BtnWrapper = styled.div`
   display: flex;
   justify-content: end;
   column-gap: 0.5rem;
-`;
-
-export const CancelBtn = styled.button`
-  ${mixinBtn};
 `;
 
 export const SubmitBtn = styled.button`

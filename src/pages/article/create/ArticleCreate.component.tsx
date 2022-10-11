@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
+import { CancelBtn } from "components";
 import { CommonH1 } from "style/commonStyled";
 import * as S from "./ArticleCreate.styled";
 
@@ -50,7 +51,7 @@ const ArticleCreate = () => {
           )}
         </S.ContentWrapper>
         <S.BtnWrapper>
-          <S.CancelBtn type="button">취소</S.CancelBtn>
+          <CancelBtn>취소</CancelBtn>
           <S.SubmitBtn type="submit">등록</S.SubmitBtn>
         </S.BtnWrapper>
       </S.FormWrapper>
