@@ -1,3 +1,4 @@
+import { mixinBtn } from "style/mixin/button";
 import styled, { css } from "styled-components";
 
 const mixinWrapper = css`
@@ -34,14 +35,8 @@ export const BtnWrapper = styled.div`
   column-gap: 0.5rem;
 `;
 
-const mixinBtn = css`
-  padding: 10px;
-  border-radius: 5px;
-`;
-
 export const CancelBtn = styled.button`
   ${mixinBtn};
-  border: 1px solid ${({ theme }) => theme.color.gray_02};
 `;
 
 export const SubmitBtn = styled.button`

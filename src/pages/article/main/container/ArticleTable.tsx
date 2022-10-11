@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { Table } from "components";
@@ -54,7 +54,7 @@ const CustomTable = styled(Table)`
   grid-template-columns: 1fr 3fr;
 `;
 
-const GoToUpdate = styled(NavLink)`
+const GoToUpdate = styled(Link)`
   position: absolute;
   width: 100%;
   height: 100%;
