@@ -23,7 +23,7 @@ const ArticleCreate = () => {
         onSubmit={handleSubmit((data) => alert(JSON.stringify(data)))}
       >
         <S.TitleWrapper>
-          <S.Label data-error={true}>제목</S.Label>
+          <S.Label htmlFor="title">제목</S.Label>
           <S.TitleInput
             id="title"
             type="text"
@@ -37,7 +37,7 @@ const ArticleCreate = () => {
           )}
         </S.TitleWrapper>
         <S.ContentWrapper>
-          <S.Label>내용</S.Label>
+          <S.Label htmlFor="content">내용</S.Label>
           <S.ContentTextarea
             id="content"
             placeholder="내용을 입력하세요."
