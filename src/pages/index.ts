@@ -1,4 +1,5 @@
 import NotFound from "./notFound/NotFound";
-import Home from "./home/Home";
+import Article from "./article/main/Article.component";
+import ArticleCreate from "./article/create/ArticleCreate.component";
 
-export { NotFound, Home };
+export { NotFound, Article, ArticleCreate };
