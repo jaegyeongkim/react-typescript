@@ -36,16 +36,19 @@ export const BtnWrapper = styled.div`
 
 const mixinBtn = css`
   padding: 10px;
-  border: 1px solid ${({ theme }) => theme.color.gray_02};
   border-radius: 5px;
 `;
 
 export const CancelBtn = styled.button`
   ${mixinBtn};
+  border: 1px solid ${({ theme }) => theme.color.gray_02};
 `;
 
 export const SubmitBtn = styled.button`
   ${mixinBtn};
+  border: 1px solid ${({ theme }) => theme.color.point_01};
+  color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.color.point_01};
 `;
 
 export const Alert = styled.span`
