@@ -21,13 +21,16 @@ const globalStyles = createGlobalStyle`
     button{
         border: 0;
         padding: 0;
-        outline: none;
         background-color: transparent;
         cursor: pointer;
     }
     a{
         text-decoration: none;
         color: black;
+    }
+    textarea{
+        resize: none;
+        font-family: antialiased;
     }
 `;
 

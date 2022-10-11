@@ -2,15 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { PATH } from "utils/constants";
+import { CommonH1 } from "style/commonStyled";
 import ArticleTable from "./container/ArticleTable";
 
 const Article = () => {
   return (
     <>
-      <h1>Article</h1>
+      <CommonH1>Article Main</CommonH1>
       <BtnWrapper>
-        <GoToCreate to={PATH.articleCreate}>게시글 추가</GoToCreate>
+        <GoToCreate to="/article/create">게시글 추가</GoToCreate>
       </BtnWrapper>
       <Wrapper>
         <ArticleTable />
