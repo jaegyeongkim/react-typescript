@@ -58,4 +58,7 @@ const GoToUpdate = styled(Link)`
   position: absolute;
   width: 100%;
   height: 100%;
+  :hover {
+    background-color: ${({ theme }) => theme.color.point_01_opacity_10};
+  }
 `;
