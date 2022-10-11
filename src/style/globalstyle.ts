@@ -26,7 +26,7 @@ const globalStyles = createGlobalStyle`
         align-items: center;
         padding: 0;
         border: 0;
-        font-size: 0.8rem;
+        font-size: 1rem;
         text-decoration: none;
         color: black;
         background-color: transparent;
