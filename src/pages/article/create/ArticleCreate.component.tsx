@@ -17,10 +17,10 @@ const ArticleCreate = () => {
     formState: { errors },
   } = useForm<ArticleFormValues>();
 
-  const navigate = useNavigate();
-
   const [articleStorage, setArticleStorage] =
     useRecoilState(ArticleStorageState);
+
+  const navigate = useNavigate();
 
   const handleCreate = (data: { title: string; content: string }) => {
     const id = Object.keys(articleStorage).length;
