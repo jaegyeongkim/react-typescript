@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 
 import { Table } from "components";
+import { ArticleStorageState } from "store/persist";
 import { articleHeadColumnList } from "assets/static";
 
 interface TableCellType {
@@ -10,35 +12,19 @@ interface TableCellType {
   content: string;
 }
 
-const dummyData = [
-  {
-    id: 1,
-    title: "title 1",
-    content: "content 1",
-  },
-  {
-    id: 2,
-    title: "title 2",
-    content: "content 2",
-  },
-  {
-    id: 3,
-    title: "title 3",
-    content: "content 3",
-  },
-];
-
 const ArticleTable = () => {
+  const [articleStorage] = useRecoilState(ArticleStorageState);
+
   return (
     <CustomTable>
       <Table.Thead columnList={articleHeadColumnList} />
       <Table.Tbody>
-        {dummyData.map((rowData) => (
-          <Table.Trow key={rowData.id}>
-            <GoToUpdate to={`/article/detail?id=${rowData.id}`} />
-            {articleHeadColumnList.map(({ key }) => (
+        {Object.entries(articleStorage).map(([id, value]) => (
+          <Table.Trow key={id}>
+            {articleHeadColumnList.map(({ key }, index) => (
               <Table.Cell key={key}>
-                {rowData[key as keyof TableCellType]}
+                {index === 0 && <GoToUpdate to={`/article/detail?id=${id}`} />}
+                {value[key as keyof TableCellType]}
               </Table.Cell>
             ))}
           </Table.Trow>
@@ -56,6 +42,7 @@ const CustomTable = styled(Table)`
 
 const GoToUpdate = styled(Link)`
   position: absolute;
+  left: 0px;
   width: 100%;
   height: 100%;
   :hover {

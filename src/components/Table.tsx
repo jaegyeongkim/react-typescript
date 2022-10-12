@@ -1,9 +1,6 @@
 import React, { createContext, ReactNode, useContext } from "react";
 import styled, { css } from "styled-components";
 
-import { ArticleRepository } from "model/ArticleRepository";
-import { ArticleRepositoryImpl } from "infrastructure/ArticleRepositoryImpl";
-
 interface ContentType {
   className?: string;
 }
@@ -22,8 +19,6 @@ const TableContext = createContext<ContentType>({
 });
 
 const Table = ({ className, children }: TableProps) => {
-  const repository: ArticleRepository = new ArticleRepositoryImpl();
-  console.log(repository);
   return (
     <Root>
       <TableContext.Provider value={{ className }}>
