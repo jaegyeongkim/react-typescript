@@ -1,9 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useRecoilState } from "recoil";
 
 import { CancelBtn } from "components";
 import { CommonH1 } from "style/commonStyled";
 import * as S from "./ArticleCreate.styled";
+import { ArticleStorageState } from "store/persist";
 
 interface FormValues {
   title: string;
@@ -18,11 +20,22 @@ const ArticleCreate = () => {
     formState: { errors },
   } = useForm<FormValues>();
 
+  const [text, setText] = useRecoilState(ArticleStorageState);
+
+  const handleCreateArticle = (data: { title: string; content: string }) => {
+    const id = Object.keys(text).length;
+
+    setText({
+      ...(typeof text === "object" ? text : {}),
+      [id]: { title: data.title, content: data.content },
+    });
+  };
+
   return (
     <>
       <CommonH1>Article Create</CommonH1>
       <S.FormWrapper
-        onSubmit={handleSubmit((data) => alert(JSON.stringify(data)))}
+        onSubmit={handleSubmit((data) => handleCreateArticle(data))}
       >
         <S.TitleWrapper>
           <S.Label htmlFor="title">제목</S.Label>

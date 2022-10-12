@@ -2,17 +2,16 @@ import { atom } from "recoil";
 
 import { localStorageEffect } from "./hooks";
 
-const ClientLanguage = {
-  en: "en",
-  ko: "ko",
-} as const;
-
-export type ClientLanguageType = keyof typeof ClientLanguage;
-
-const clientLanguageState = atom<ClientLanguageType>({
-  key: "clientLanguageState",
-  default: "en",
-  effects: [localStorageEffect<ClientLanguageType>("clientLanguageState")],
+const ArticleStorageState = atom<{
+  [key: string]: { title: string; content: string };
+}>({
+  key: "ArticleStorageState",
+  default: {} as { [key: string]: { title: string; content: string } },
+  effects: [
+    localStorageEffect<{ [key: string]: { title: string; content: string } }>(
+      "ArticleStorageState",
+    ),
+  ],
 });
 
-export { clientLanguageState };
+export { ArticleStorageState };
