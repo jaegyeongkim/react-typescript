@@ -1,16 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
 
 import { CancelBtn } from "components";
+import { ArticleStorageState } from "store/persist";
+import { ArticleFormValues } from "types/article";
 import { CommonH1 } from "style/commonStyled";
 import * as S from "./ArticleCreate.styled";
-import { ArticleStorageState } from "store/persist";
-
-interface FormValues {
-  title: string;
-  content: string;
-}
 
 const ArticleCreate = () => {
   const {
@@ -18,25 +15,27 @@ const ArticleCreate = () => {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<ArticleFormValues>();
 
-  const [text, setText] = useRecoilState(ArticleStorageState);
+  const navigate = useNavigate();
 
-  const handleCreateArticle = (data: { title: string; content: string }) => {
-    const id = Object.keys(text).length;
+  const [articleStorage, setArticleStorage] =
+    useRecoilState(ArticleStorageState);
 
-    setText({
-      ...(typeof text === "object" ? text : {}),
+  const handleCreate = (data: { title: string; content: string }) => {
+    const id = Object.keys(articleStorage).length;
+
+    setArticleStorage({
+      ...(typeof articleStorage === "object" ? articleStorage : {}),
       [id]: { title: data.title, content: data.content },
     });
+    navigate(`/article/detail?id=${id}`);
   };
 
   return (
     <>
       <CommonH1>Article Create</CommonH1>
-      <S.FormWrapper
-        onSubmit={handleSubmit((data) => handleCreateArticle(data))}
-      >
+      <S.FormWrapper onSubmit={handleSubmit((data) => handleCreate(data))}>
         <S.TitleWrapper>
           <S.Label htmlFor="title">제목</S.Label>
           <S.TitleInput
