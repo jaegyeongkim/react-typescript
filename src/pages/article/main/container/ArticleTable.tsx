@@ -35,9 +35,11 @@ const ArticleTable = () => {
       <Table.Tbody>
         {dummyData.map((rowData) => (
           <Table.Trow key={rowData.id}>
-            <GoToUpdate to={`/article/detail?id=${rowData.id}`} />
-            {articleHeadColumnList.map(({ key }) => (
+            {articleHeadColumnList.map(({ key }, index) => (
               <Table.Cell key={key}>
+                {index === 0 && (
+                  <GoToUpdate to={`/article/detail?id=${rowData.id}`} />
+                )}
                 {rowData[key as keyof TableCellType]}
               </Table.Cell>
             ))}
@@ -56,6 +58,7 @@ const CustomTable = styled(Table)`
 
 const GoToUpdate = styled(Link)`
   position: absolute;
+  left: 0px;
   width: 100%;
   height: 100%;
   :hover {
