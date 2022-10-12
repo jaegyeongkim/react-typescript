@@ -1,29 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useRecoilState } from "recoil";
 
 import { CancelBtn } from "components";
+import { ArticleStorageState } from "store/persist";
+import { ArticleFormValues } from "types/article";
 import { CommonH1 } from "style/commonStyled";
 import * as S from "../create/ArticleCreate.styled";
-
-interface FormValues {
-  title: string;
-  content: string;
-}
 
 const ArticleUpdate = () => {
   const {
     register,
     watch,
     handleSubmit,
+    setValue,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<ArticleFormValues>();
+
+  const navigate = useNavigate();
+
+  const [searchParams] = useSearchParams();
+  const [articleStorage, setArticleStorage] =
+    useRecoilState(ArticleStorageState);
+
+  const id = searchParams.get("id") || 0;
+
+  useEffect(() => {
+    setValue("title", articleStorage[id].title);
+    setValue("content", articleStorage[id].content);
+  }, []);
+
+  const handleUpdate = (data: { title: string; content: string }) => {
+    setArticleStorage({
+      ...(typeof articleStorage === "object" ? articleStorage : {}),
+      [id]: { title: data.title, content: data.content },
+    });
+    navigate(`/article/detail?id=${id}`);
+  };
 
   return (
     <>
       <CommonH1>Article Update</CommonH1>
-      <S.FormWrapper
-        onSubmit={handleSubmit((data) => alert(JSON.stringify(data)))}
-      >
+      <S.FormWrapper onSubmit={handleSubmit((data) => handleUpdate(data))}>
         <S.TitleWrapper>
           <S.Label data-error={true}>제목</S.Label>
           <S.TitleInput
