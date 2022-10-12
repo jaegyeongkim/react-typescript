@@ -13,10 +13,7 @@ export const FormWrapper = styled.form`
 `;
 
 export const TitleWrapper = styled.div`
-  ${mixinWrapper};
-`;
-
-export const ContentWrapper = styled.div`
+  position: relative;
   ${mixinWrapper};
 `;
 
@@ -65,4 +62,12 @@ export const ContentTextarea = styled.textarea`
   &[data-error="true"] {
     border: 1px solid ${({ theme }) => theme.color.error_01};
   }
+`;
+
+export const LengthCount = styled.span`
+  position: absolute;
+  bottom: 8px;
+  right: 20px;
+  z-index: 1;
+  font-size: 0.8rem;
 `;

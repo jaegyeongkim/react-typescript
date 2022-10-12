@@ -13,6 +13,7 @@ interface FormValues {
 const ArticleCreate = () => {
   const {
     register,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
@@ -31,25 +32,29 @@ const ArticleCreate = () => {
             placeholder="제목을 입력하세요."
             aria-invalid={errors.title ? "true" : "false"}
             data-error={errors.title ? true : false}
+            maxLength={50}
             {...register("title", { required: "제목은 필수 값입니다." })}
           />
           {errors.title && (
             <S.Alert role="alert">{errors.title.message}</S.Alert>
           )}
+          <S.LengthCount>{watch("title")?.length || 0} / 50</S.LengthCount>
         </S.TitleWrapper>
-        <S.ContentWrapper>
+        <S.TitleWrapper>
           <S.Label htmlFor="content">내용</S.Label>
           <S.ContentTextarea
             id="content"
             placeholder="내용을 입력하세요."
             aria-invalid={errors.content ? "true" : "false"}
             data-error={errors.content ? true : false}
+            maxLength={500}
             {...register("content", { required: "내용은 필수 값입니다." })}
           />
           {errors.content && (
             <S.Alert role="alert">{errors.content.message}</S.Alert>
           )}
-        </S.ContentWrapper>
+          <S.LengthCount>{watch("content")?.length || 0} / 500</S.LengthCount>
+        </S.TitleWrapper>
         <S.BtnWrapper>
           <CancelBtn>취소</CancelBtn>
           <S.SubmitBtn type="submit">등록</S.SubmitBtn>
