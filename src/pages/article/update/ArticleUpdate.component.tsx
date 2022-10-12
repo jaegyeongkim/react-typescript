@@ -5,6 +5,7 @@ import { useRecoilState } from "recoil";
 
 import { CancelBtn } from "components";
 import { ArticleStorageState } from "store/persist";
+import { useNotFound } from "hooks";
 import { ArticleFormValues } from "types/article";
 import { CommonH1 } from "style/commonStyled";
 import * as S from "../create/ArticleCreate.styled";
@@ -25,11 +26,7 @@ const ArticleUpdate = () => {
     useRecoilState(ArticleStorageState);
 
   const id = searchParams.get("id") || 0;
-
-  useEffect(() => {
-    setValue("title", articleStorage[id].title);
-    setValue("content", articleStorage[id].content);
-  }, []);
+  useNotFound(articleStorage[id]);
 
   const handleUpdate = (data: { title: string; content: string }) => {
     setArticleStorage({
@@ -38,6 +35,11 @@ const ArticleUpdate = () => {
     });
     navigate(`/article/detail?id=${id}`);
   };
+
+  useEffect(() => {
+    setValue("title", articleStorage?.[id]?.title);
+    setValue("content", articleStorage?.[id]?.content);
+  }, []);
 
   return (
     <>
