@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
 import { ArticleStorageState } from "store/persist";
-import { ArticleFormValues } from "types/article";
+import { ArticleStorageDetailType } from "types/article";
 import { pseudoLatency } from "./pseudoLatency";
 
 const useCreateArticle = () => {
@@ -11,7 +11,7 @@ const useCreateArticle = () => {
 
   const navigate = useNavigate();
 
-  const createArticle = async (data: ArticleFormValues) => {
+  const createArticle = async (data: ArticleStorageDetailType) => {
     const id =
       Number(
         Object.keys(articleStorage)[Object.keys(articleStorage).length - 1],
