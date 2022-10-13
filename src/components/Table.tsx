@@ -69,7 +69,7 @@ const Trow = styled.tr`
   position: relative;
   display: grid;
   border-bottom: 1px solid ${({ theme }) => theme.color.gray_02};
-  :last-child {
+  :nth-child(5) {
     border-bottom: none;
   }
 `;
@@ -78,7 +78,6 @@ const Thead = styled.thead`
   & > ${Trow} {
     height: 40px;
   }
-  border-bottom: 1px solid ${({ theme }) => theme.color.gray_02};
   background-color: ${({ theme }) => theme.color.gray_00};
 `;
 
@@ -87,6 +86,8 @@ const Tbody = styled.tbody`
   display: flex;
   flex: 1;
   flex-direction: column;
+  min-height: 250px;
+  max-height: 250px;
 
   & > ${Trow} {
     min-height: 50px;

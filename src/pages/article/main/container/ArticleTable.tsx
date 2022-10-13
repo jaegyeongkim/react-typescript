@@ -6,18 +6,11 @@ import styled from "styled-components";
 import { Table } from "components";
 import { useFetchArticle, useResetQuery } from "hooks/queries";
 import { articleHeadColumnList } from "assets/static";
-import { ArticleStorageType } from "types/article";
 
 interface TableCellType {
   title: string;
   content: string;
 }
-
-const beforeFetch: ArticleStorageType = new Array(5)
-  .fill(0)
-  .reduce((acc, cur, index) => {
-    return { ...acc, [index]: { title: "", content: "" } };
-  }, {});
 
 const ArticleTable = () => {
   const { fetchArticle } = useFetchArticle();
@@ -29,14 +22,18 @@ const ArticleTable = () => {
     <CustomTable>
       <Table.Thead columnList={articleHeadColumnList} />
       <Table.Tbody>
-        {Object.entries(query.data || beforeFetch).map(([id, value]) => (
+        {Object.entries(query.data || []).map(([id, value]) => (
           <Table.Trow key={id}>
-            {articleHeadColumnList.map(({ key }, index) => (
-              <Table.Cell key={key}>
-                {index === 0 && <GoToUpdate to={`/article/detail?id=${id}`} />}
-                {value[key as keyof TableCellType]}
-              </Table.Cell>
-            ))}
+            {articleHeadColumnList.map(({ key }, index) => {
+              return (
+                <Table.Cell key={key}>
+                  {index === 0 && (
+                    <GoToUpdate to={`/article/detail?id=${id}`} />
+                  )}
+                  {value[key as keyof TableCellType]}
+                </Table.Cell>
+              );
+            })}
           </Table.Trow>
         ))}
       </Table.Tbody>
