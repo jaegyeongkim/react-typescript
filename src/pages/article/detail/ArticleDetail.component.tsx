@@ -1,9 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useMutation, useQuery } from "react-query";
 
-// import { useNotFound } from "hooks";
-import { useFetchArticleDetail, useDeleteArticleDetail } from "hooks/queries";
+import { useNotFound } from "hooks";
+import {
+  useFetchArticleDetail,
+  useDeleteArticleDetail,
+  useResetQuery,
+} from "hooks/queries";
 import { CommonH1 } from "style/commonStyled";
 import * as S from "./ArticleDetail.styled";
 
@@ -13,18 +17,13 @@ const ArticleDetail = () => {
 
   const query = useQuery(["articleStorageDetail"], fetchArticleDetail);
   const { mutate } = useMutation(deleteArticleDetail);
-
-  // useNotFound(detail);
+  useNotFound(query.data?.detail, query.isLoading);
 
   const handleDelete = () => {
     mutate(query?.data?.id!);
   };
 
-  useEffect(() => {
-    return () => {
-      query.remove();
-    };
-  }, []);
+  useResetQuery(query);
 
   return (
     <>

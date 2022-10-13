@@ -4,8 +4,12 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 
 import { CancelBtn } from "components";
-// import { useNotFound } from "hooks";
-import { useFetchArticleDetail, useUpdateArticle } from "hooks/queries";
+import { useNotFound } from "hooks";
+import {
+  useFetchArticleDetail,
+  useResetQuery,
+  useUpdateArticle,
+} from "hooks/queries";
 import { ArticleFormValues } from "types/article";
 import { CommonH1 } from "style/commonStyled";
 import * as S from "../create/ArticleCreate.styled";
@@ -23,20 +27,26 @@ const ArticleUpdate = () => {
   const { updateArticle } = useUpdateArticle();
   const { mutate } = useMutation(updateArticle);
 
-  const query = useQuery(["articleStorageDetail"], fetchArticleDetail);
+  const query = useQuery(["articleStorageDetail"], fetchArticleDetail, {
+    keepPreviousData: true,
+  });
+
   const [searchParams] = useSearchParams();
 
   const id = searchParams.get("id") || 0;
-  // useNotFound(articleStorage[id]);
 
   const handleUpdate = (data: { title: string; content: string }) => {
     mutate({ id, data });
   };
 
+  useNotFound(query.data?.detail, query.isLoading);
+
   useEffect(() => {
     setValue("title", query?.data?.detail?.title!);
     setValue("content", query?.data?.detail?.content!);
-  }, []);
+  }, [query.isLoading]);
+
+  useResetQuery(query);
 
   return (
     <>

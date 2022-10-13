@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import styled from "styled-components";
 
 import { Table } from "components";
-import { useFetchArticle } from "hooks/queries";
+import { useFetchArticle, useResetQuery } from "hooks/queries";
 import { articleHeadColumnList } from "assets/static";
 
 interface TableCellType {
@@ -15,6 +15,8 @@ interface TableCellType {
 const ArticleTable = () => {
   const { fetchArticle } = useFetchArticle();
   const query = useQuery(["articleStorage"], fetchArticle);
+
+  useResetQuery(query);
 
   return (
     <CustomTable>
