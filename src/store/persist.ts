@@ -1,20 +1,13 @@
 import { atom } from "recoil";
 
+import { ArticleStorageType } from "types/article";
 import { initArticleStorage } from "assets/static/persistStorage";
 import { localStorageEffect } from "./hooks";
 
-const ArticleStorageState = atom<{
-  [key: string]: { title: string; content: string };
-}>({
+const ArticleStorageState = atom<ArticleStorageType>({
   key: "ArticleStorageState",
-  default: initArticleStorage as {
-    [key: string]: { title: string; content: string };
-  },
-  effects: [
-    localStorageEffect<{ [key: string]: { title: string; content: string } }>(
-      "ArticleStorageState",
-    ),
-  ],
+  default: initArticleStorage as ArticleStorageType,
+  effects: [localStorageEffect<ArticleStorageType>("ArticleStorageState")],
 });
 
 export { ArticleStorageState };
