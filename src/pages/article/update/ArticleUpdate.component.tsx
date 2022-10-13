@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useRecoilState } from "recoil";
+import { useMutation, useQuery } from "react-query";
 
 import { CancelBtn } from "components";
-import { ArticleStorageState } from "store/persist";
-import { useNotFound } from "hooks";
+// import { useNotFound } from "hooks";
+import { useFetchArticleDetail, useUpdateArticle } from "hooks/queries";
 import { ArticleFormValues } from "types/article";
 import { CommonH1 } from "style/commonStyled";
 import * as S from "../create/ArticleCreate.styled";
@@ -19,26 +19,23 @@ const ArticleUpdate = () => {
     formState: { errors },
   } = useForm<ArticleFormValues>();
 
-  const navigate = useNavigate();
+  const { fetchArticleDetail } = useFetchArticleDetail();
+  const { updateArticle } = useUpdateArticle();
+  const { mutate } = useMutation(updateArticle);
 
+  const query = useQuery(["articleStorageDetail"], fetchArticleDetail);
   const [searchParams] = useSearchParams();
-  const [articleStorage, setArticleStorage] =
-    useRecoilState(ArticleStorageState);
 
   const id = searchParams.get("id") || 0;
-  useNotFound(articleStorage[id]);
+  // useNotFound(articleStorage[id]);
 
   const handleUpdate = (data: { title: string; content: string }) => {
-    setArticleStorage({
-      ...(typeof articleStorage === "object" ? articleStorage : {}),
-      [id]: { title: data.title, content: data.content },
-    });
-    navigate(`/article/detail?id=${id}`);
+    mutate({ id, data });
   };
 
   useEffect(() => {
-    setValue("title", articleStorage?.[id]?.title);
-    setValue("content", articleStorage?.[id]?.content);
+    setValue("title", query?.data?.detail?.title!);
+    setValue("content", query?.data?.detail?.content!);
   }, []);
 
   return (
