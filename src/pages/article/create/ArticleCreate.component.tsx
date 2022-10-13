@@ -23,7 +23,10 @@ const ArticleCreate = () => {
   const navigate = useNavigate();
 
   const handleCreate = (data: { title: string; content: string }) => {
-    const id = Object.keys(articleStorage).length;
+    const id =
+      Number(
+        Object.keys(articleStorage)[Object.keys(articleStorage).length - 1],
+      ) + 1;
 
     setArticleStorage({
       ...(typeof articleStorage === "object" ? articleStorage : {}),
