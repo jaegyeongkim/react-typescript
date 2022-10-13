@@ -10,7 +10,7 @@ import {
   useResetQuery,
   useUpdateArticle,
 } from "hooks/queries";
-import { ArticleFormValues } from "types/article";
+import { ArticleStorageDetailType } from "types/article";
 import { CommonH1 } from "style/commonStyled";
 import * as S from "../create/ArticleCreate.styled";
 
@@ -21,7 +21,7 @@ const ArticleUpdate = () => {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<ArticleFormValues>();
+  } = useForm<ArticleStorageDetailType>();
 
   const { fetchArticleDetail } = useFetchArticleDetail();
   const { updateArticle } = useUpdateArticle();

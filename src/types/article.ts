@@ -1,8 +1,8 @@
-export interface ArticleFormValues {
+export interface ArticleStorageDetailType {
   title: string;
   content: string;
 }
 
 export interface ArticleStorageType {
-  [key: string]: ArticleFormValues;
+  [key: string]: ArticleStorageDetailType;
 }

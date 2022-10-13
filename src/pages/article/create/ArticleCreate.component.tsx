@@ -3,7 +3,7 @@ import { useMutation } from "react-query";
 import { useForm } from "react-hook-form";
 
 import { CancelBtn } from "components";
-import { ArticleFormValues } from "types/article";
+import { ArticleStorageDetailType } from "types/article";
 import { CommonH1 } from "style/commonStyled";
 import * as S from "./ArticleCreate.styled";
 import { useCreateArticle } from "hooks/queries";
@@ -14,12 +14,12 @@ const ArticleCreate = () => {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm<ArticleFormValues>();
+  } = useForm<ArticleStorageDetailType>();
 
   const { createArticle } = useCreateArticle();
   const { mutate } = useMutation(createArticle);
 
-  const handleCreate = (data: ArticleFormValues) => {
+  const handleCreate = (data: ArticleStorageDetailType) => {
     mutate(data);
   };
 

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
 import { ArticleStorageState } from "store/persist";
-import { ArticleFormValues } from "types/article";
+import { ArticleStorageDetailType } from "types/article";
 import { pseudoLatency } from "./pseudoLatency";
 
 const useUpdateArticle = () => {
@@ -16,7 +16,7 @@ const useUpdateArticle = () => {
     data,
   }: {
     id: string | number;
-    data: ArticleFormValues;
+    data: ArticleStorageDetailType;
   }) => {
     await pseudoLatency().then(() => {
       setArticleStorage({
