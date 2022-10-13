@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useQuery } from "react-query";
 import styled from "styled-components";
 
 import { Table } from "components";
 import { useFetchArticle } from "hooks/queries";
 import { articleHeadColumnList } from "assets/static";
-import { useQuery } from "react-query";
 
 interface TableCellType {
   title: string;
