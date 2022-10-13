@@ -17,12 +17,12 @@ const ArticleDetail = () => {
 
   const query = useQuery(["articleStorageDetail"], fetchArticleDetail);
   const { mutate } = useMutation(deleteArticleDetail);
-  useNotFound(query.data?.detail, query.isLoading);
 
   const handleDelete = () => {
     mutate(query?.data?.id!);
   };
 
+  useNotFound(query.data?.detail, query.isLoading);
   useResetQuery(query);
 
   return (

@@ -39,13 +39,12 @@ const ArticleUpdate = () => {
     mutate({ id, data });
   };
 
-  useNotFound(query.data?.detail, query.isLoading);
-
   useEffect(() => {
     setValue("title", query?.data?.detail?.title!);
     setValue("content", query?.data?.detail?.content!);
   }, [query.isLoading]);
 
+  useNotFound(query.data?.detail, query.isLoading);
   useResetQuery(query);
 
   return (
