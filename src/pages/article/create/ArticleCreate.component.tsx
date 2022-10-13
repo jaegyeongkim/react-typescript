@@ -1,13 +1,12 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useMutation } from "react-query";
 import { useForm } from "react-hook-form";
-import { useRecoilState } from "recoil";
 
 import { CancelBtn } from "components";
-import { ArticleStorageState } from "store/persist";
 import { ArticleFormValues } from "types/article";
 import { CommonH1 } from "style/commonStyled";
 import * as S from "./ArticleCreate.styled";
+import { useCreateArticle } from "hooks/queries";
 
 const ArticleCreate = () => {
   const {
@@ -17,19 +16,11 @@ const ArticleCreate = () => {
     formState: { errors },
   } = useForm<ArticleFormValues>();
 
-  const [articleStorage, setArticleStorage] =
-    useRecoilState(ArticleStorageState);
+  const { createArticle } = useCreateArticle();
+  const { mutate } = useMutation(createArticle);
 
-  const navigate = useNavigate();
-
-  const handleCreate = (data: { title: string; content: string }) => {
-    const id = Object.keys(articleStorage).length;
-
-    setArticleStorage({
-      ...(typeof articleStorage === "object" ? articleStorage : {}),
-      [id]: { title: data.title, content: data.content },
-    });
-    navigate(`/article/detail?id=${id}`);
+  const handleCreate = (data: ArticleFormValues) => {
+    mutate(data);
   };
 
   return (

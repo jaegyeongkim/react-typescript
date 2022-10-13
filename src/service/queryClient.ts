@@ -1,9 +1,5 @@
 import { QueryClient } from "react-query";
 
-function queryErrorHandler(error: unknown): void {
-  console.log(error);
-}
-
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -12,12 +8,7 @@ export const queryClient = new QueryClient({
       // refetchOnMount: true, // 기본 값 사용 - true
       // refetchOnReconnect: true, // 기본 값 사용 - true
       refetchOnWindowFocus: false,
-      keepPreviousData: true,
       retry: 0, //
-      onError: (err) => queryErrorHandler(err),
-    },
-    mutations: {
-      onError: (err) => queryErrorHandler(err),
     },
   },
 });
