@@ -1,1 +1,3 @@
-export {};
+import useFetchArticle from "./useFetchArticle";
+
+export { useFetchArticle };

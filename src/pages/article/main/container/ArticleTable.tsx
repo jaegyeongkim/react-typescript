@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useRecoilState } from "recoil";
 import styled from "styled-components";
 
 import { Table } from "components";
-import { ArticleStorageState } from "store/persist";
+import { useFetchArticle } from "hooks/queries";
 import { articleHeadColumnList } from "assets/static";
+import { useQuery } from "react-query";
 
 interface TableCellType {
   title: string;
@@ -13,13 +13,14 @@ interface TableCellType {
 }
 
 const ArticleTable = () => {
-  const [articleStorage] = useRecoilState(ArticleStorageState);
+  const { fetchArticle } = useFetchArticle();
+  const query = useQuery(["articleStorage"], fetchArticle);
 
   return (
     <CustomTable>
       <Table.Thead columnList={articleHeadColumnList} />
       <Table.Tbody>
-        {Object.entries(articleStorage).map(([id, value]) => (
+        {Object.entries(query.data || []).map(([id, value]) => (
           <Table.Trow key={id}>
             {articleHeadColumnList.map(({ key }, index) => (
               <Table.Cell key={key}>
