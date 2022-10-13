@@ -1,35 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 
 // import { useNotFound } from "hooks";
-import { useFetchArticleDetail } from "hooks/queries";
+import { useFetchArticleDetail, useDeleteArticleDetail } from "hooks/queries";
 import { CommonH1 } from "style/commonStyled";
 import * as S from "./ArticleDetail.styled";
 
 const ArticleDetail = () => {
   const { fetchArticleDetail } = useFetchArticleDetail();
-  const query = useQuery(["articleStorageDetail"], fetchArticleDetail);
+  const { deleteArticleDetail } = useDeleteArticleDetail();
 
-  // const navigate = useNavigate();
+  const query = useQuery(["articleStorageDetail"], fetchArticleDetail);
+  const { mutate } = useMutation(deleteArticleDetail);
 
   // useNotFound(detail);
 
-  // const handleDelete = () => {
-  //   const copy = { ...articleStorage };
-  //   delete copy[id];
-  //   setArticleStorage(copy);
-  //   navigate(`/`);
-  // };
+  const handleDelete = () => {
+    mutate(query?.data?.id!);
+  };
+
+  useEffect(() => {
+    return () => {
+      query.remove();
+    };
+  }, []);
 
   return (
     <>
       <CommonH1>Article Detail</CommonH1>
       <S.Wrapper>
         <S.BtnWrapper>
-          {/* <button type="button" onClick={handleDelete}>
+          <button type="button" onClick={handleDelete}>
             삭제
-          </button> */}
+          </button>
           <Link to={`/article/update?id=${query?.data?.id}`}>수정</Link>
         </S.BtnWrapper>
         <S.TitleWrapper>

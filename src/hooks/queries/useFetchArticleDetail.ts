@@ -12,7 +12,6 @@ const useFetchArticleDetail = () => {
 
   const fetchArticleDetail = async () => {
     return pseudoLatency().then(() => {
-      console.log(articleStorage[id], id);
       return { detail: articleStorage[id], id };
     });
   };
