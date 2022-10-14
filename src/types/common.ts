@@ -1,3 +1,6 @@
-export interface TestInterface {}
+interface PageInfo {
+  currentPage: number;
+  totalPages: number;
+}
 
-export type TestType = {};
+export type { PageInfo };

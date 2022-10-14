@@ -23,7 +23,7 @@ const useUpdateArticle = () => {
         ...(typeof articleStorage === "object" ? articleStorage : {}),
         [id]: { title: data.title, content: data.content },
       });
-      navigate(`/article/detail?id=${id}`);
+      navigate(`/article/${id}`);
     });
   };
 
