@@ -1,3 +1,3 @@
-import { ReactComponent as ArrowUpperImg } from "./ic_arrow_upper.svg";
+import { ReactComponent as ArrowIcon } from "./ic_arrow.svg";
 
-export { ArrowUpperImg };
+export { ArrowIcon };

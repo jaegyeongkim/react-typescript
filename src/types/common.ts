@@ -1,3 +1,9 @@
-export interface TestInterface {}
+interface PageInfo {
+  currentPage: number;
+  dataPerPage: number;
+  startRow: number;
+  totalData: number;
+  totalPages: number;
+}
 
-export type TestType = {};
+export type { PageInfo };

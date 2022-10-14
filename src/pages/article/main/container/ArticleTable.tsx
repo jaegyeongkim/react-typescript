@@ -27,7 +27,7 @@ const ArticleTable = () => {
             {articleHeadColumnList.map(({ key }, index) => {
               return (
                 <Table.Cell key={key}>
-                  {index === 0 && <GoToUpdate to={`/article/${id}`} />}
+                  {index === 0 && <GoToDetail to={`/article/${id}`} />}
                   {value[key as keyof TableCellType]}
                 </Table.Cell>
               );
@@ -45,11 +45,12 @@ const CustomTable = styled(Table)`
   grid-template-columns: 1fr 3fr;
 `;
 
-const GoToUpdate = styled(Link)`
+const GoToDetail = styled(Link)`
   position: absolute;
   left: 0px;
   width: 100%;
   height: 100%;
+
   :hover {
     background-color: ${({ theme }) => theme.color.point_01_opacity_10};
   }
