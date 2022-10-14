@@ -1,5 +1,7 @@
 import styled, { css } from "styled-components";
 
+import { PAGE_PER_DATA_COUNT } from "utils/constants";
+
 export const Root = styled.table`
   display: flex;
   flex-direction: column;
@@ -13,7 +15,7 @@ export const Trow = styled.tr`
   position: relative;
   display: grid;
   border-bottom: 1px solid ${({ theme }) => theme.color.gray_02};
-  :nth-child(5) {
+  :nth-child(${PAGE_PER_DATA_COUNT}) {
     border-bottom: none;
   }
 `;

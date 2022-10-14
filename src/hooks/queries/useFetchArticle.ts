@@ -2,16 +2,18 @@ import { useRecoilState } from "recoil";
 
 import { ArticleStorageState } from "store/persist";
 import { ArticleStorageDetailType } from "types/article";
+import { PAGE_PER_DATA_COUNT } from "utils/constants";
 import { pseudoLatency } from "./pseudoLatency";
 
 const useFetchArticle = () => {
   const [articleStorage] = useRecoilState(ArticleStorageState);
 
-  const fetchArticle = async (page: number, pagePerData: number = 5) => {
-    const first = (page - 1) * pagePerData;
-    const last = page * pagePerData;
+  const fetchArticle = async (page: number) => {
+    const first = (page - 1) * PAGE_PER_DATA_COUNT;
+    const last = page * PAGE_PER_DATA_COUNT;
     const articleStorageKeys = Object.keys(articleStorage);
-    const totalPage = Math.ceil(articleStorageKeys.length / pagePerData) || 0;
+    const totalPage =
+      Math.ceil(articleStorageKeys.length / PAGE_PER_DATA_COUNT) || 0;
 
     const currentPageArticleStorage = articleStorageKeys.reduce(
       (
