@@ -68,11 +68,11 @@ export const NumBtn = styled.button<NumBtnProps>`
   height: 32px;
   border-radius: 2px;
   color: ${({ theme, isCurrentPage }) =>
-    isCurrentPage ? theme.color.black : theme.color.gray_50};
+    isCurrentPage ? theme.color.black : theme.color.gray_05};
   background-color: ${({ theme, isCurrentPage }) =>
-    isCurrentPage ? theme.color.gray_10 : theme.color.white};
+    isCurrentPage ? theme.color.gray_01 : theme.color.white};
 
   :hover {
-    background-color: ${({ theme }) => theme.color.gray_30};
+    background-color: ${({ theme }) => theme.color.gray_03};
   }
 `;

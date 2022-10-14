@@ -5,7 +5,7 @@ import { createPageList } from "utils/helper/pagination";
 const usePagination = (
   currentPage: number,
   totalPages: number,
-  maxPageNum: number = 10,
+  maxPageNum: number = 5,
 ) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [numList, setNumList] = useState<number[]>([]);
