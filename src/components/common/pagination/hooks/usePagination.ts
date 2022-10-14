@@ -14,7 +14,7 @@ const usePagination = (
   const pageNumList = createPageList(currentPage, dataPerPage, totalPages);
 
   const isDisabledPrev = useMemo(() => {
-    return currentPage - 1 < 1;
+    return currentPage - maxPageNum <= 0;
   }, [currentPage]);
 
   const isDisabledNext = useMemo(() => {
