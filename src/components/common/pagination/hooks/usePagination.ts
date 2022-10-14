@@ -6,11 +6,12 @@ const usePagination = (
   currentPage: number,
   totalPages: number,
   maxPageNum: number = 5,
+  dataPerPage: number = 5,
 ) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [numList, setNumList] = useState<number[]>([]);
 
-  const pageNumList = createPageList(currentPage, 10, totalPages);
+  const pageNumList = createPageList(currentPage, dataPerPage, totalPages);
 
   const isDisabledPrev = useMemo(() => {
     return currentPage - 1 < 1;

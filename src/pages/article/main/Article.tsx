@@ -29,12 +29,12 @@ const Article = () => {
         <S.GoToCreate to="/article/create">게시글 추가</S.GoToCreate>
       </S.BtnWrapper>
       <S.Wrapper>
-        <ArticleTable data={query.data} />
+        <ArticleTable data={query.data?.data} />
       </S.Wrapper>
       <Pagination
         pageInfo={{
           currentPage: currentPage,
-          totalPages: 2,
+          totalPages: query.data?.totalPage!,
         }}
       />
     </>

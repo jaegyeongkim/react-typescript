@@ -10,8 +10,10 @@ const useFetchArticle = () => {
   const fetchArticle = async (page: number, pagePerData: number = 5) => {
     const first = (page - 1) * pagePerData;
     const last = page * pagePerData;
+    const articleStorageKeys = Object.keys(articleStorage);
+    const totalPage = Math.ceil(articleStorageKeys.length / pagePerData) || 0;
 
-    const currentPageArticleStorage = Object.keys(articleStorage).reduce(
+    const currentPageArticleStorage = articleStorageKeys.reduce(
       (
         acc: { [key: string]: ArticleStorageDetailType },
         key: string,
@@ -27,7 +29,7 @@ const useFetchArticle = () => {
     );
 
     return pseudoLatency().then(() => {
-      return currentPageArticleStorage;
+      return { data: currentPageArticleStorage, totalPage: totalPage };
     });
   };
 

@@ -29,11 +29,17 @@ export const ArrowBtn = styled.button`
     fill: ${({ theme }) => theme.color.gray_05};
   }
 
-  :hover {
+  :not(:disabled):hover {
     background-color: ${({ theme }) => theme.color.gray_03};
 
     svg {
       fill: ${({ theme }) => theme.color.gray_06};
+    }
+  }
+  :disabled {
+    cursor: not-allowed;
+    svg {
+      fill: ${({ theme }) => theme.color.gray_02};
     }
   }
 `;
