@@ -33,7 +33,7 @@ const ArticleDetail = () => {
           <button type="button" onClick={handleDelete}>
             삭제
           </button>
-          <Link to={`/article/update?id=${query?.data?.id}`}>수정</Link>
+          <Link to={`/article/update/${query?.data?.id}`}>수정</Link>
         </S.BtnWrapper>
         <S.TitleWrapper>
           <S.Label>제목</S.Label>

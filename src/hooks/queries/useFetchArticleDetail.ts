@@ -1,14 +1,14 @@
 import { useRecoilState } from "recoil";
-import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { ArticleStorageState } from "store/persist";
 import { pseudoLatency } from "./pseudoLatency";
 
 const useFetchArticleDetail = () => {
   const [articleStorage] = useRecoilState(ArticleStorageState);
-  const [searchParams] = useSearchParams();
+  const params = useParams();
 
-  const id = searchParams.get("id") || 0;
+  const id = params.id || "";
 
   const fetchArticleDetail = async () => {
     return pseudoLatency().then(() => {
