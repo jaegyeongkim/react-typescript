@@ -1,7 +1,7 @@
 import React from "react";
 
 import { CommonH1 } from "style/commonStyled";
-import ArticleTable from "./container/ArticleTable";
+import ArticleTable from "./container/ArticleTable/ArticleTable";
 import * as S from "./Article.styled";
 
 const Article = () => {

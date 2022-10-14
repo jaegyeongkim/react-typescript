@@ -1,5 +1,5 @@
-import Layout from "./Layout";
-import Table from "./Table";
-import CancelBtn from "./common/btn/cancelBtn/CancelBtn.component";
+import Layout from "./layout/Layout";
+import Table from "./table/Table";
+import CancelBtn from "./common/btn/cancelBtn/CancelBtn";
 
 export { Layout, Table, CancelBtn };
