@@ -1,4 +1,5 @@
 import React from "react";
+import { useSearchParams } from "react-router-dom";
 import { useQuery } from "react-query";
 
 import { useFetchArticle, useResetQuery } from "hooks/queries";
@@ -8,7 +9,10 @@ import * as S from "./Article.styled";
 
 const Article = () => {
   const { fetchArticle } = useFetchArticle();
-  const query = useQuery(["articleStorage"], fetchArticle);
+  const [searchParams] = useSearchParams();
+  const query = useQuery(["articleStorage"], () =>
+    fetchArticle(Number(searchParams.get("page")) || 1),
+  );
 
   useResetQuery(query);
 
