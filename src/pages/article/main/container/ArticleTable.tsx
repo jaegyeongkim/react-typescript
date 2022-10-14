@@ -27,9 +27,7 @@ const ArticleTable = () => {
             {articleHeadColumnList.map(({ key }, index) => {
               return (
                 <Table.Cell key={key}>
-                  {index === 0 && (
-                    <GoToUpdate to={`/article/detail?id=${id}`} />
-                  )}
+                  {index === 0 && <GoToUpdate to={`/article/${id}`} />}
                   {value[key as keyof TableCellType]}
                 </Table.Cell>
               );

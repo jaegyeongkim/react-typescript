@@ -19,9 +19,9 @@ const Router = () => {
           <Route index element={<Article />} />
           <Route path={PATH.article}>
             <Route path="" element={<Article />} />
-            <Route path={PATH.articleDetail} element={<ArticleDetail />} />
+            <Route path=":id" element={<ArticleDetail />} />
             <Route path={PATH.articleCreate} element={<ArticleCreate />} />
-            <Route path={PATH.articleUpdate} element={<ArticleUpdate />} />
+            <Route path="update/:id" element={<ArticleUpdate />} />
           </Route>
           <Route path={PATH.notFound} element={<NotFound />} />
           <Route path="*" element={<NotFound />} />

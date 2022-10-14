@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 
@@ -31,9 +31,9 @@ const ArticleUpdate = () => {
     keepPreviousData: true,
   });
 
-  const [searchParams] = useSearchParams();
+  const params = useParams();
 
-  const id = searchParams.get("id") || 0;
+  const id = params.id || "";
 
   const handleUpdate = (data: { title: string; content: string }) => {
     mutate({ id, data });
