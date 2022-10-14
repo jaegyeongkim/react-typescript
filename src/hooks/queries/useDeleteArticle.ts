@@ -12,10 +12,12 @@ const useDeleteArticleDetail = () => {
 
   const deleteArticleDetail = async (id: string | number) => {
     await pseudoLatency().then(() => {
-      const copy = { ...articleStorage };
-      delete copy[id];
-      setArticleStorage(copy);
-      navigate(`/`);
+      if (confirm("게시글을 삭제하시겠습니까?")) {
+        const copy = { ...articleStorage };
+        delete copy[id];
+        setArticleStorage(copy);
+        navigate(`/`);
+      }
     });
   };
 
