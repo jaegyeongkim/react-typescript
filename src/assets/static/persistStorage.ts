@@ -1,4 +1,4 @@
-export const initArticleStorage = new Array(11)
+export const initArticleStorage = new Array(26)
   .fill(0)
   .reduce((acc, cur, index) => {
     return {

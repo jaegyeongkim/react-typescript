@@ -23,6 +23,7 @@ const useCreateArticle = () => {
         [id]: { title: data.title, content: data.content },
       });
       navigate(`/article/${id}`);
+      alert("게시글이 생성되었습니다.");
     });
   };
 

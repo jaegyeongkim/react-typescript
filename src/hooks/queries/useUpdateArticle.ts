@@ -24,6 +24,7 @@ const useUpdateArticle = () => {
         [id]: { title: data.title, content: data.content },
       });
       navigate(`/article/${id}`);
+      alert("게시글이 수정되었습니다.");
     });
   };
 
